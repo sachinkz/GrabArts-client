@@ -30,7 +30,7 @@ export const FileUplaod: React.FC<FileUploadProps> = ({
 
     const handleFileUploadComplete = async (res: any) => {
         onChange(res?.[0].url)
-
+        
         if (setFetchingFaces && setFaces) {
             setFetchingFaces(true)
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/detect-faces`, { imgUrl: res?.[0].url })
