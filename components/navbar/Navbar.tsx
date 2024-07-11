@@ -6,7 +6,7 @@ import { SideNavDrawer } from "./SideNavDrawer";
 import { ModeToggle } from "../ui/Mode-toggle";
 import { Input } from "../ui/input";
 import { LoggedUserTypes } from "../providers/profile-provider";
-import {useState } from "react";
+import { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
 import axios from "axios";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -43,20 +43,24 @@ const Navbar = ({ onLandingpage, onShop }: NavbarProps) => {
 
 
     return (
-        <div className=" z-50 w-full h-14 border-b flex items-center fixed bg-background top-0 left-0 max-md:px-5 max-sm:px-2 px-10">
+        <div className=" z-50 bg-transparent w-full h-14 py-10 flex items-center fixed top-0 left-0 max-md:px-5 max-sm:px-2 px-10">
             <div className="flex items-center w-full">
                 {onLandingpage &&
-                    <>
-                        <Link href={'/'}> <h3 className="text-xl font-semibold mr-5">
-                            GrabArts
-                        </h3></Link>
-                        <Link className="max-md:hidden" href="/shop"><Button variant="ghost">Purchase Art</Button></Link>
-                        <Link className="max-md:hidden" href="/artist"><Button variant="ghost">Artists</Button></Link>
-                        <ModeToggle />
-                        <div className="ml-auto">
+                    <div className="px-[15%] w-full flex items-center text-white">
+                        <div className="flex items-center">
+                            <Link href={'/'}>
+                                <h3 className="text-xl font-semibold mb-1 mr-5">
+                                    GrabArts
+                                </h3>
+                            </Link>
+                            <Link className="max-md:hidden" href="/shop"><Button variant="ghost">Purchase Art</Button></Link>
+                            <Link className="max-md:hidden" href="/artist"><Button variant="ghost">Artists</Button></Link>
+                        </div>
+                        <div className="ml-auto text-primary">
+                            <ModeToggle />
                             <UserButton afterSignOutUrl="/" />
                         </div>
-                    </>
+                    </div>
                 }
                 {onShop && (
                     <>
@@ -69,7 +73,7 @@ const Navbar = ({ onLandingpage, onShop }: NavbarProps) => {
                         <div className="ml-auto w-fit flex gap-3 items-center justify-around">
                             <div className='w-full max-md:hidden relative space-x-2  flex justify-center max-md:ml-14 items-center'>
                                 <Input onChange={(e) => searchUsers(e.target.value)} value={typedValue} placeholder='search for artists . . .' className='h-full focus-visible:ring-0 focus-visible:ring-offset-0' />
-                                <Button onClick={closeDrawer} variant="outline" className='h-full'>{typedValue!==""?<X className='h-5 w-5' />:<Search className='h-5 w-5'/>}</Button>
+                                <Button onClick={closeDrawer} variant="outline" className='h-full'>{typedValue !== "" ? <X className='h-5 w-5' /> : <Search className='h-5 w-5' />}</Button>
                                 <div className='absolute w-full flex flex-col gap-1 bg-background top-10 z-50'>
                                     {searchResults?.map((result, i) => (
                                         <Link key={i} href={`/artist/profile/${result?._id}`}>

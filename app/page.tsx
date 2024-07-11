@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button'
 import Navbar from '@/components/navbar/Navbar'
-import { TopAlert } from '@/components/navbar/TopAlert'
 import Link from 'next/link'
 import Image from 'next/image'
-import colors2 from '../assets/colors2.png'
+import GradientBanner from '@/components/GradientBanner'
+import { MdOutlineKeyboardArrowRight, } from 'react-icons/md'
+import { GiPriceTag } from "react-icons/gi";
+import painting from '../assets/painting.jpeg';
+
 
 
 export default function Home() {
@@ -14,23 +17,23 @@ export default function Home() {
   return (
     <>
       <Navbar onLandingpage />
-      <div className='w-full max-h-screen px-5 pt-32'>
-        <div className='w-full flex flex-col justify-center items-center text-center p-3 gap-10'>
-          <TopAlert content='😀 Connect with most talented Artists' />
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            Social media and a freelance work place for Artists
-          </h1>
-          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
-            Signup today to join the GrabArts artist community or purchase an artwork from the best artist you likes
-          </h3>
-          <div className='flex gap-5'>
-            <Link href="/artist"><Button variant='outline' size="default">Join as an Artist</Button></Link>
-            <Link href="/shop"><Button variant='outline' size="default">Purchase Art</Button></Link>
+      <GradientBanner />
+      <div className='w-full h-full px-5'>
+        <div className="flex justify-between mt-20 pt-16 mx-[12%] max-md:mx-2 border-x dark:border-background/20 h-fit border-primary/20 pb-16 px-6">
+          <div className="w-1/2 max-lg:w-full flex flex-col gap-5">
+            <h1 className="text-7xl font-extrabold max-xl:text-6xl leading-tight text-primary">Social media and freelance work place for Artists</h1>
+            <p className="text-primary/90 text-lg">Signup today to join the GrabArts artist community or purchase an artwork from the best artist you like</p>
+            <div className="flex gap-8 mt-4 z-0 items-center">
+              <Link href={"/artist"}><Button className=" rounded-3xl font-semibold pl-6 hover:bg-primary/80">Iam an Artist <MdOutlineKeyboardArrowRight className="h-5 w-5" />   </Button></Link>
+              <Link href={'/shop'}><p className="text-primary hover:text-primary/60  font-bold flex text-sm justify-between cursor-pointer  h-full items-center">Shop now<MdOutlineKeyboardArrowRight className="h-5 w-5" /></p></Link>
+            </div>
           </div>
-        </div>
-        <div className='w-full flex justify-center'>
-          <Image src={colors2} alt='heroimg' width={300} height={300}  />
-          {/* <Image src={colors} alt='sideImg' width={600} height={600} className='absolute -z-10 dark:opacity-100 left-0 top-0 w-full h-screen pt-5'/> */}
+          <div className="w-1/2 max-lg:hidden relative  flex justify-center  items-center ">
+            <div className="absolute shadow-xl px-5 pt-5 py-7 right-0 h-full  w-3/4">
+              <Image className=" w-full object-cover h-full rounded-lg shadow-inner bg-white/20  " src={painting} alt="" />
+              <h1 className="flex items-center gap-2 text-sm font-thin p-1 justify-end text-primary/80"><GiPriceTag className="h-4 w-4 text-primary/20" /> FOR SALE</h1>
+            </div>
+          </div>
         </div>
       </div>
     </>
